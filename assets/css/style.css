@@ -1,0 +1,120 @@
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  user-select: none;
+  user-zoom: none;
+}
+/* elemet edit */
+.v-center {
+  justify-content: center;
+}
+.soft-edge {
+  border-radius: 15px;
+}
+/* Logo */
+.logo {
+  height: 90px;
+}
+.logo-panel {
+  height: 48px;
+}
+.org-logo {
+  height: 128px;
+}
+/* border */
+.hype-border-down {
+  width: 100%;
+  font-size: x-large;
+  border-bottom: #fff solid 2px;
+  border-top: #fff solid 2px;
+  border-radius: 15px;
+}
+.hype-border-btn {
+  border-bottom: lightblue solid 2px;
+  border-top: lightblue solid 2px;
+  border-radius: 15px;
+}
+.info-card-left {
+  border-left: rgb(255, 238, 0) 5px solid;
+  border-radius: 1px;
+}
+/* card circle */
+.info-card-body {
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+}
+.card-blue-circ {
+  border-radius: 100%;
+  border: rgb(84, 45, 255) solid;
+  height: 100px;
+  width: 100px;
+}
+.info-border {
+  position: relative;
+  border: rgb(170, 62, 0) 5px solid;
+  height: 120px;
+  width: 120px;
+  left: 40px;
+  font-size: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.panel-icon {
+  font-size: 100px;
+}
+/* filler */
+.width-fill {
+  position: relative;
+  width: 100%;
+}
+.width-fill-nt {
+  width: 100%;
+}
+.height-fill {
+  position: relative;
+  height: 100%;
+}
+.height-85{
+  height: 85%;
+}
+/* scrolled */
+.win-x {
+  overflow-x: scroll;
+}
+.win-y {
+  overflow-y: scroll;
+}
+/* items */
+.hype-item-btn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  border: none;
+  font-style:initial;
+}
+.hype-btn-orange {
+  background-color: orangered;
+  color: rgb(214, 214, 214);
+  transition: all 250ms;  
+}
+.hype-btn-orange:hover{
+  background-color: rgba(255, 255, 255, 0);
+  color:  orangered;
+  border: orangered 1px solid;
+  transition: all 250ms;
+}
+.hype-btn-orange:active{
+  background-color: rgba(98, 0, 255, 0.774);
+  color:  whitesmoke;
+  border: orangered 1px solid;
+  transition: all 250ms;
+}
+.hype-btn-orange:{
+  background-color: rgba(98, 0, 255, 0.774);
+  color:  whitesmoke;
+  border: orangered 1px solid;
+  transition: all 250ms;
+}
