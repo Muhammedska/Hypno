@@ -20,7 +20,9 @@
 <body>
     <div>
         <nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><img src="../favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Hypno</a>
+            <a class="navbar-brand" href="#">
+                <img src="../favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp; Hypno
+            </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
                 <span class="navbar-toggler-icon"></span>
             </button>

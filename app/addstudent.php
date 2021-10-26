@@ -73,7 +73,30 @@
                                 <i class="fas fa-user-plus panel-icon"></i>
                             </div>
                             <div class='container'>
-                                <button class="hype-item-btn hype-btn-orange width-fill">Öğrenci Ekle</button>
+                                <button class="hype-item-btn hype-btn-orange width-fill" data-toggle="modal" data-target="#addStudent">Öğrenci Ekle</button>
+                                <div class="modal fade height-85" id="addStudent">
+                                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title"> <i class="fas fa-user-plus"></i> &nbsp; Öğrenci Ekle</h4>
+                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                Modal body..
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times-circle "></i> &nbsp; Close</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="info-card-body flex bg-white info-card-left text-center ">

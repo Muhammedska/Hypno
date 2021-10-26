@@ -112,9 +112,11 @@ html {
   border: orangered 1px solid;
   transition: all 250ms;
 }
-.hype-btn-orange:{
+/*
+.hype-btn-orange:hover{
   background-color: rgba(98, 0, 255, 0.774);
   color:  whitesmoke;
   border: orangered 1px solid;
   transition: all 250ms;
 }
+*/
