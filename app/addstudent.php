@@ -1,3 +1,20 @@
+<?PHP
+    class studentDB extends SQLite3
+    {
+        function __construct()
+        {
+            $this->open('krm/db/std.db');
+        }
+    }
+
+    $db = new studentDB();
+    function wsql($database, $table, $id)
+    {
+        $database->exec("INSERT INTO $table (stID) VALUES ($id)");
+    };
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -84,15 +101,40 @@
                                                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                                             </div>
 
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                Modal body..
-                                            </div>
+                                            <form action="<?php echo  $_SERVER['PHP_SELF']; ?>" method='post' class='text-left was-validated'>
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="studentname">Öğrenci Adı & SoyAdı:</label>
+                                                        <input type="text" class="form-control" id="studentname" placeholder="Öğrenci İsmini Giriniz" name="studentname" required>
+                                                        <div class="valid-feedback">Geçerli.</div>
+                                                        <div class="invalid-feedback">Lütfen bu alanı doldurun.</div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="studentid">Öğrenci Numarası:</label>
+                                                        <input type="text" class="form-control" id="studentid" placeholder="Öğrenci Numarasını Giriniz" name="studentid" required>
+                                                        <div class="valid-feedback">Geçerli.</div>
+                                                        <div class="invalid-feedback">Lütfen bu alanı doldurun.</div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="studentstatus">Öğrenci Sınıf Düzeyi:</label>
+                                                        <select class="form-control" id="studentstatus" placeholder="Öğrenci Numarasını Giriniz" name="studentstatus" required>
+                                                            <option value="9">9.Sınıf</option>
+                                                            <option value="10">10.Sınıf</option>
+                                                            <option value="11">11.Sınıf</option>
+                                                            <option value="12">12.Sınıf</option>
+                                                            <option value="13">Mezun</option>
+                                                        </select>
+                                                        
+                                                    </div>
+                                                </div>
 
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times-circle "></i> &nbsp; Close</button>
-                                            </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type='submit' class='btn btn-outline-primary'> <i class="fas fa-save "></i> &nbsp; Kaydet</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times-circle "></i> &nbsp; Close</button>
+                                                </div>
+                                            </form>
 
                                         </div>
                                     </div>
@@ -112,7 +154,7 @@
                                 <i class="fas fa-user-edit panel-icon"></i>
                             </div>
                             <div class='container'>
-                                
+
                                 <!-- Button to Open the Modal -->
                                 <button type="button" class="hype-item-btn hype-btn-orange width-fill" data-toggle="modal" data-target="#myModal">
                                     Öğrenci Bilgisi Düzenle
@@ -148,6 +190,7 @@
                 </div>
             </div>
         </div>
+        
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="../assets/js/chart.min.js"></script>
