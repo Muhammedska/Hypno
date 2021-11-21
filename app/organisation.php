@@ -1,3 +1,14 @@
+<?php 
+session_start();
+$islog = $_SESSION['islog'];
+if (!empty($islog)) {
+    if ($islog == true) {
+        
+        $cname = $_SESSION['companyname'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +47,7 @@
                 </div>
                 <div class="hype-border-down width-fill-nt win-y my-4 p-3 text-center">
                     <div class="win-x">
-                        Your Company
+                        <?php echo $cname;?>
                     </div>
 
                     <small><small>Eğitim Geleceğin Garantisidir....</small></small>
@@ -65,7 +76,7 @@
                 <div class="container bg-dark text-light soft-edge my-3 p-3">
                     <div class="d-inline-flex width-fill">
                         <img src="../favicon.ico" alt="kurum logo" class='logo-panel' srcset="">
-                        <h1>&nbsp; Your Company</h1>
+                        <h1>&nbsp; <?php echo $cname;?></h1>
                     </div>
                 </div>
                 <div class="container bg-transparent win-x">
