@@ -112,6 +112,15 @@ html {
   border: orangered 1px solid;
   transition: all 250ms;
 }
+.graduate{
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 2.5px;
+  background-color: orangered;
+  
+}
+
 /*
 .hype-btn-orange:hover{
   background-color: rgba(98, 0, 255, 0.774);

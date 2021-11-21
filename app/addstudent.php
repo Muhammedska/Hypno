@@ -1,17 +1,40 @@
 <?PHP
-    class studentDB extends SQLite3
+session_start();
+$islog = $_SESSION['islog'];
+if (!($islog == true)) {
+    echo "<script>window.location.href='/login.html'</script>";
+}
+class studentDB extends SQLite3
+{
+    function __construct()
     {
-        function __construct()
-        {
-            $this->open('krm/db/std.db');
-        }
+        $this->open('krm/db/std.db');
     }
+}
 
-    $db = new studentDB();
-    function wsql($database, $table, $id)
-    {
-        $database->exec("INSERT INTO $table (stID) VALUES ($id)");
+$db = new studentDB();
+function wsql($database, $table, $name, $id, $status)
+{
+    $database->exec("INSERT INTO $table (name,id,status) VALUES ('" . $name . "','" . $id . "'," . $status . ")");
+};
+function readsql($database, $table)
+{
+    $sql = "SELECT * FROM $table ORDER BY name";
+    $results = $database->query($sql);
+    $data  = [];
+    $data2 = [];
+    $data3 = [];
+    while ($row = $results->fetchArray()) {
+        array_push($data, $row['name']);
+        array_push($data2, $row['id']);
+        array_push($data3, $row['status']);
     };
+    return [$data, $data2, $data3];
+};
+$stuname = [];
+$stuid = [];
+$stustat = [];
+[$stuname, $stuid, $stustat] = readsql($db, 'user');
 ?>
 
 
@@ -106,13 +129,13 @@
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label for="studentname">Öğrenci Adı & SoyAdı:</label>
-                                                        <input type="text" class="form-control" id="studentname" placeholder="Öğrenci İsmini Giriniz" name="studentname" required>
+                                                        <input type="text" class="form-control" id="studentname" autocomplete="off" placeholder="Öğrenci İsmini Giriniz" name="studentname" required>
                                                         <div class="valid-feedback">Geçerli.</div>
                                                         <div class="invalid-feedback">Lütfen bu alanı doldurun.</div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="studentid">Öğrenci Numarası:</label>
-                                                        <input type="text" class="form-control" id="studentid" placeholder="Öğrenci Numarasını Giriniz" name="studentid" required>
+                                                        <input type="text" class="form-control" id="studentid" autocomplete="off" placeholder="Öğrenci Numarasını Giriniz" name="studentid" required>
                                                         <div class="valid-feedback">Geçerli.</div>
                                                         <div class="invalid-feedback">Lütfen bu alanı doldurun.</div>
                                                     </div>
@@ -125,7 +148,7 @@
                                                             <option value="12">12.Sınıf</option>
                                                             <option value="13">Mezun</option>
                                                         </select>
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -134,6 +157,15 @@
                                                     <button type='submit' class='btn btn-outline-primary'> <i class="fas fa-save "></i> &nbsp; Kaydet</button>
                                                     <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times-circle "></i> &nbsp; Close</button>
                                                 </div>
+                                                <?php
+                                                if (isset($_POST['studentstatus']) && isset($_POST['studentname']) && isset($_POST['studentid'])) {
+                                                    if (in_array($_POST['studentid'], $stuid)) {
+                                                        echo "<script>alert('Girdiğiniz id  ile önceden kayıt edilmiş öğrenci var ')</script>";
+                                                    } else {
+                                                        wsql($db, 'user', $_POST['studentname'], $_POST['studentid'], $_POST['studentstatus']);
+                                                    }
+                                                }
+                                                ?>
                                             </form>
 
                                         </div>
@@ -157,7 +189,7 @@
 
                                 <!-- Button to Open the Modal -->
                                 <button type="button" class="hype-item-btn hype-btn-orange width-fill" data-toggle="modal" data-target="#myModal">
-                                    Öğrenci Bilgisi Düzenle
+                                    Öğrenci Listesi
                                 </button>
 
                                 <!-- The Modal -->
@@ -167,13 +199,30 @@
 
                                             <!-- Modal Header -->
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Modal Heading</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title"> <i class="fas fa-list-ul "></i> &nbsp; Öğrenci Listesi</h4>
+                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                                             </div>
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                Modal body..
+                                                <div class="row">
+                                                    <div class="col-xl-4">
+                                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class='graduate p-2'>9</span>.Sınıf </a>
+                                                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                                                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                                                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-8">
+                                                        <div class="tab-content" id="v-pills-tabContent">
+                                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
+                                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                                                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                                                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <!-- Modal footer -->
@@ -190,7 +239,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="../assets/js/chart.min.js"></script>

@@ -1,5 +1,6 @@
 <?php 
     session_start();
     
-    $_SESSION["username"]
+    $_SESSION['islog'] = true;
+    echo "<script>window.location.href='/app/organisation.php'</script>";
 ?>
